@@ -86,9 +86,9 @@ class DataTransformation:
             logging.info(f"Applying preprocessing object on training data and test data!")
             
             input_train_arr = preprocessing_obj.fit_transform(input_train_df)
-            input_test_arr = preprocessing_obj.fit_transform(input_test_df)
+            input_test_arr = preprocessing_obj.transform(input_test_df)
             
-            train_arr = np.c[
+            train_arr = np.c_[
                 input_train_arr, np.array(target_train_df)
             ]
             
@@ -99,7 +99,7 @@ class DataTransformation:
             logging.info(f"Saved preprocessing object")
             
             save_object(
-                file_path = data_transformation_config.preprocessor_obj_file_path,
+                file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
             )   
             
